@@ -8,24 +8,32 @@
     body {
       font-family: "Segoe UI", sans-serif;
       background: #fef2f2;
-      text-align: center;
-      padding: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
     }
     .card {
       background: white;
       border-radius: 16px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.1);
       max-width: 400px;
-      margin: auto;
-      padding: 25px;
+      width: 100%;
+      padding: 30px;
+      text-align: center;
     }
     .icon {
-      font-size: 60px;
+      font-size: 70px;
       color: #dc2626; /* red */
     }
     h2 {
       margin: 15px 0;
       color: #dc2626;
+    }
+    p {
+      margin: 8px 0;
+      color: #555;
     }
     .details {
       text-align: left;
@@ -34,7 +42,7 @@
       color: #555;
     }
     .details p {
-      margin: 5px 0;
+      margin: 6px 0;
     }
     button {
       margin-top: 25px;
@@ -44,39 +52,4 @@
       border: none;
       border-radius: 8px;
       cursor: pointer;
-      font-size: 16px;
-      transition: background 0.3s;
-    }
-    button:hover {
-      background: #111827;
-    }
-  </style>
-</head>
-<body>
-
-  <div class="card">
-    <div class="icon">❌</div>
-    <h2>Payment Failed</h2>
-    <p>Oops! Your transaction could not be completed.</p>
-
-    <div class="details">
-      <p><b>Transaction ID:</b> <span id="txnId"></span></p>
-      <p><b>Amount:</b> ₹<span id="amount"></span></p>
-      <p><b>Status:</b> Failed</p>
-    </div>
-
-    <button onclick="goHome()">🏠 Home</button>
-  </div>
-
-  <script>
-    const params = new URLSearchParams(window.location.search);
-    document.getElementById("txnId").textContent = params.get("txnId") || "N/A";
-    document.getElementById("amount").textContent = params.get("amount") || "N/A";
-
-    function goHome() {
-      window.location.href = "product.html";
-    }
-  </script>
-
-</body>
-</html>
+      font-siz
