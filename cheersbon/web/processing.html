@@ -74,6 +74,13 @@
 
       window.location.href = upiLink; // open payment app
     }, 4000);
+
+     // ✅ Prevent back navigation
+    history.replaceState(null, "", location.href);
+    window.onpopstate = function () {
+      history.go(1);
+    };
   </script>
 </body>
 </html>
+
