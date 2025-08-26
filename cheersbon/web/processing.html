@@ -4,6 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Payment Processing</title>
+  <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate, max-age=0">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
   <style>
     body {
       font-family: "Segoe UI", sans-serif;
@@ -74,13 +77,14 @@
 
       window.location.href = upiLink; // open payment app
     }, 4000);
-
-     // ✅ Prevent back navigation
-    history.replaceState(null, "", location.href);
+     
+    // ✅ Prevent back button but allow navigation
+    window.history.pushState(null, "", window.location.href);
     window.onpopstate = function () {
-      history.go(1);
+      window.history.pushState(null, "", window.location.href);
     };
   </script>
 </body>
 </html>
+
 
