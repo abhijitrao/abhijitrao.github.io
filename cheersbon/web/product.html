@@ -3,49 +3,66 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Product Page</title>
+  <title>Food Order</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
-      padding: 20px;
+      font-family: "Segoe UI", sans-serif;
+      background: #f5f7fa;
       text-align: center;
+      padding: 30px;
     }
     .card {
-      border: 1px solid #ccc;
-      border-radius: 8px;
-      padding: 20px;
-      max-width: 300px;
+      background: white;
+      border-radius: 16px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      max-width: 350px;
       margin: auto;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+      padding: 20px;
+    }
+    .card img {
+      width: 100%;
+      border-radius: 12px;
+      margin-bottom: 15px;
+    }
+    h2 {
+      margin: 10px 0;
+    }
+    .price {
+      font-size: 20px;
+      color: #e91e63;
+      margin: 10px 0;
     }
     button {
-      background: #4CAF50;
+      background: #ff5722;
       color: white;
-      padding: 10px 20px;
+      padding: 12px 25px;
       border: none;
-      border-radius: 6px;
+      border-radius: 8px;
       cursor: pointer;
       font-size: 16px;
+      transition: background 0.3s;
     }
     button:hover {
-      background: #45a049;
+      background: #e64a19;
     }
   </style>
 </head>
 <body>
 
   <div class="card">
-    <h2>Sample Product</h2>
-    <p>Price: ₹499</p>
-    <button onclick="goToSuccess()">Buy Now</button>
+    <img src="https://images.unsplash.com/photo-1606756790138-79b7a1f1b60b?w=800" alt="Delicious Pizza">
+    <h2>Cheese Burst Pizza</h2>
+    <p class="price">₹299</p>
+    <p>Loaded with extra cheese, fresh toppings & crispy crust 🍕</p>
+    <button onclick="goToProcessing()">Order Now</button>
   </div>
 
   <script>
-    function goToSuccess() {
-      const txnId = "TXN" + Math.floor(Math.random() * 1000000);
-      const amount = 499;
-      const status = "Success";
-      window.location.href = "success.html?txnId=" + txnId + "&amount=" + amount + "&status=" + status;
+    function goToProcessing() {
+      const txnId = "ORD" + Math.floor(Math.random() * 1000000);
+      const amount = 299;
+      const status = "Processing";
+      window.location.href = "processing.html?txnId=" + txnId + "&amount=" + amount + "&status=" + status + "&item=Cheese Burst Pizza";
     }
   </script>
 
