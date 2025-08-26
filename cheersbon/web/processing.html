@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Order Processing</title>
+  <style>
+    body {
+      font-family: "Segoe UI", sans-serif;
+      background: #fff8e1;
+      text-align: center;
+      padding: 30px;
+    }
+    h2 {
+      margin-bottom: 15px;
+    }
+    .progress-container {
+      margin-top: 20px;
+      width: 80%;
+      max-width: 400px;
+      margin-left: auto;
+      margin-right: auto;
+      background: #eee;
+      border-radius: 20px;
+      overflow: hidden;
+    }
+    .progress-bar {
+      width: 0%;
+      height: 20px;
+      background: #ff9800;
+      animation: progressAnim 5s linear forwards;
+    }
+    @keyframes progressAnim {
+      from { width: 0%; }
+      to { width: 100%; }
+    }
+    .card {
+      background: white;
+      border-radius: 12px;
+      padding: 15px;
+      margin-top: 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      display: inline-block;
+      text-align: left;
+    }
+    .card img {
+      width: 100px;
+      border-radius: 8px;
+      float: left;
+      margin-right: 15px;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>🍴 Your Order is Being Prepared...</h2>
+  <div class="progress-container">
+    <div class="progress-bar"></div>
+  </div>
+
+  <div class="card">
+    <img src="https://images.unsplash.com/photo-1606756790138-79b7a1f1b60b?w=800" alt="Pizza">
+    <div>
+      <p><b>Item:</b> <span id="item"></span></p>
+      <p><b>Order ID:</b> <span id="txnId"></span></p>
+      <p><b>Amount:</b> ₹<span id="amount"></span></p>
+      <p><b>Status:</b> <span id="status"></span></p>
+    </div>
+  </div>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const txnId = params.get("txnId");
+    const amount = params.get("amount");
+    const item = params.get("item");
+
+    document.getElementById("txnId").textContent = txnId;
+    document.getElementById("amount").textContent = amount;
+    document.getElementById("item").textContent = item;
+    document.getElementById("status").textContent = "Processing";
+
+    // Simulate delay -> redirect to success
+    setTimeout(() => {
+      window.location.href = "success.html?txnId=" + txnId + "&amount=" + amount + "&status=Success&item=" + item;
+    }, 5000);
+  </script>
+
+</body>
+</html>
