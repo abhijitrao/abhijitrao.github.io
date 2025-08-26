@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Payment Success</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      text-align: center;
+    }
+    .success {
+      color: green;
+      font-size: 22px;
+      margin-top: 20px;
+    }
+    .details {
+      margin-top: 20px;
+      border: 1px solid #ddd;
+      display: inline-block;
+      padding: 15px 30px;
+      border-radius: 8px;
+      background: #f9f9f9;
+    }
+  </style>
+</head>
+<body>
+
+  <h2 class="success">✅ Payment Successful!</h2>
+  <div class="details">
+    <p><b>Transaction ID:</b> <span id="txnId"></span></p>
+    <p><b>Amount:</b> <span id="amount"></span></p>
+    <p><b>Status:</b> <span id="status"></span></p>
+  </div>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    document.getElementById("txnId").textContent = params.get("txnId");
+    document.getElementById("amount").textContent = "₹" + params.get("amount");
+    document.getElementById("status").textContent = params.get("status");
+  </script>
+
+</body>
+</html>
