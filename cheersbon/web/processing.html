@@ -54,7 +54,7 @@
     const item = params.get("item");
 
     const messages = [
-      "🔄 Payment request is being created...",
+     // "🔄 Payment request is being created...",
       "📲 Redirecting to BonusHub app..."
     ];
     let i = 0;
@@ -62,7 +62,7 @@
     setInterval(() => {
       msgElement.textContent = messages[i];
       i = (i + 1) % messages.length;
-    }, 2000);
+    }, 1000);
 
     // After few sec → open UPI app
     setTimeout(() => {
@@ -73,11 +73,12 @@
         "&url=https://yourdomain.com/success.html?txnId=" + txnId + "&amount=" + amount + "&item=" + encodeURIComponent(item);
 
       window.location.href = upiLink; // open payment app
-    }, 4000);
+    }, 2000);
     
   </script>
 </body>
 </html>
+
 
 
 
