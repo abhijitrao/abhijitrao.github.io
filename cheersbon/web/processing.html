@@ -3,62 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Order Processing</title>
+  <title>Payment Processing</title>
   <style>
-    body {
-      font-family: "Segoe UI", sans-serif;
-      background: #fff8e1;
-      text-align: center;
-      padding: 30px;
-    }
-    h2 {
-      margin-bottom: 20px;
-    }
-    /* Circular Spinner */
-    .loader {
-      border: 6px solid #f3f3f3;
-      border-top: 6px solid #ff9800;
-      border-radius: 50%;
-      width: 60px;
-      height: 60px;
-      animation: spin 1s linear infinite;
-      margin: 20px auto;
-    }
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-    .card {
-      background: white;
-      border-radius: 12px;
-      padding: 15px;
-      margin-top: 20px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-      display: inline-block;
-      text-align: left;
-    }
-    .card img {
-      width: 100px;
-      border-radius: 8px;
-      float: left;
-      margin-right: 15px;
-    }
+    body { font-family: "Segoe UI", sans-serif; background: #fafafa; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; }
+    .loader { border: 6px solid #eee; border-top: 6px solid #ff5722; border-radius: 50%; width: 60px; height: 60px; animation: spin 1s linear infinite; margin-bottom: 20px; }
+    @keyframes spin { 100% { transform: rotate(360deg); } }
+    h2 { color: #333; margin-bottom: 10px; }
   </style>
 </head>
 <body>
-
-  <h2>🍴 Your Order is Being Prepared...</h2>
   <div class="loader"></div>
-
-  <div class="card">
-    <img src="https://cdn.pixabay.com/photo/2017/12/09/08/18/pizza-3007395_1280.jpg" alt="Pizza">
-    <div>
-      <p><b>Item:</b> <span id="item"></span></p>
-      <p><b>Order ID:</b> <span id="txnId"></span></p>
-      <p><b>Amount:</b> ₹<span id="amount"></span></p>
-      <p><b>Status:</b> <span id="status"></span></p>
-    </div>
-  </div>
+  <h2 id="processingMsg">⏳ Initializing Payment...</h2>
 
   <script>
     const params = new URLSearchParams(window.location.search);
@@ -66,16 +21,27 @@
     const amount = params.get("amount");
     const item = params.get("item");
 
-    document.getElementById("txnId").textContent = txnId;
-    document.getElementById("amount").textContent = amount;
-    document.getElementById("item").textContent = item;
-    document.getElementById("status").textContent = "Processing";
+    const messages = [
+      "🔄 Payment request is being created...",
+      "📲 Redirecting to your UPI app..."
+    ];
+    let i = 0;
+    const msgElement = document.getElementById("processingMsg");
+    setInterval(() => {
+      msgElement.textContent = messages[i];
+      i = (i + 1) % messages.length;
+    }, 2000);
 
-    // Simulate delay -> redirect to success
+    // After few sec → open UPI app
     setTimeout(() => {
-      window.location.href = "success.html?txnId=" + txnId + "&amount=" + amount + "&status=Success&item=" + item;
-    }, 5000);
-  </script>
+      const upiLink =
+        "upi://pay?pa=merchant@upi&pn=BonusHub&mc=0000&tid=" + txnId +
+        "&tr=" + txnId + "&tn=" + encodeURIComponent(item) +
+        "&am=" + amount + "&cu=INR" +
+        "&url=https://yourdomain.com/success.html";
 
+      window.location.href = upiLink; // open payment app
+    }, 4000);
+  </script>
 </body>
 </html>
