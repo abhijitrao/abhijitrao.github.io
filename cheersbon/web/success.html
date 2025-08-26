@@ -94,13 +94,9 @@
       window.location.href = "product.html";
     }
 
-     // ✅ Prevent back navigation
-    history.replaceState(null, "", location.href);
-    window.onpopstate = function () {
-      history.go(1);
-    };
   </script>
 
 </body>
 </html>
+
 
