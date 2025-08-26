@@ -3,42 +3,70 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Payment Success</title>
+  <title>Order Success</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
-      padding: 20px;
+      font-family: "Segoe UI", sans-serif;
+      background: #f1f8e9;
       text-align: center;
+      padding: 30px;
     }
     .success {
-      color: green;
+      color: #4caf50;
       font-size: 22px;
       margin-top: 20px;
     }
     .details {
       margin-top: 20px;
-      border: 1px solid #ddd;
+      background: white;
+      padding: 15px 25px;
+      border-radius: 12px;
       display: inline-block;
-      padding: 15px 30px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      text-align: left;
+    }
+    .details img {
+      width: 100px;
       border-radius: 8px;
-      background: #f9f9f9;
+      float: left;
+      margin-right: 15px;
+    }
+    button {
+      margin-top: 20px;
+      padding: 12px 25px;
+      background: #2196F3;
+      border: none;
+      border-radius: 8px;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #1976d2;
     }
   </style>
 </head>
 <body>
 
-  <h2 class="success">✅ Payment Successful!</h2>
+  <h2 class="success">✅ Order Confirmed!</h2>
   <div class="details">
-    <p><b>Transaction ID:</b> <span id="txnId"></span></p>
-    <p><b>Amount:</b> <span id="amount"></span></p>
-    <p><b>Status:</b> <span id="status"></span></p>
+    <img src="https://images.unsplash.com/photo-1606756790138-79b7a1f1b60b?w=800" alt="Pizza">
+    <div>
+      <p><b>Item:</b> <span id="item"></span></p>
+      <p><b>Order ID:</b> <span id="txnId"></span></p>
+      <p><b>Amount:</b> ₹<span id="amount"></span></p>
+      <p><b>Status:</b> <span id="status"></span></p>
+    </div>
   </div>
+
+  <button onclick="window.location.href='product.html'">🍕 Order Again</button>
 
   <script>
     const params = new URLSearchParams(window.location.search);
     document.getElementById("txnId").textContent = params.get("txnId");
-    document.getElementById("amount").textContent = "₹" + params.get("amount");
+    document.getElementById("amount").textContent = params.get("amount");
     document.getElementById("status").textContent = params.get("status");
+    document.getElementById("item").textContent = params.get("item");
   </script>
 
 </body>
